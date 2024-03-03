@@ -22,15 +22,34 @@ function Form(){
   const formik = useFormik({
     initialValues: {
       serial: "",
+      brand: "",
       defects: "",
       origin: "",
     },
     onSubmit:(values) => {
-      //submit somehow
+      //upload data somehow
+
       changePage();
       //console.log(values);
     }
   });
+  var brand = "";
+  function checkBrand(id) {
+    let AppleRegex = /^A+[0-9]{4}$/;
+    let MicrosoftRegex = /^([A-Za-z0-9]{5}-){4}[A-Za-z0-9]{5}$/;
+    let AsusRegex = /^[A-Za-z0-9]{12}$/;
+    let LenovoRegex = /^[A-Za-z0-9]{7}$/;
+    if (AppleRegex.test(id))
+      brand = "Apple";
+    else if (MicrosoftRegex.test(id)) 
+      brand =  "Microsoft";
+    else if (LenovoRegex.test(id))
+      brand = "Lenovo";
+    else if (AsusRegex.test(id))
+      brand = "Asus";
+    else
+      brand = "Unknown";
+  }
   return (
     <div>
       <Navbar />
@@ -44,11 +63,13 @@ function Form(){
             name="serial"
             value = {formik.values.serial}
             onChange={formik.handleChange}
+            onInput={checkBrand(formik.values.serial)}
         />
         <details>
           <summary>How to find serial code?</summary>
           <Tutorial />
         </details>
+        <label>Brand: {brand}</label>
         <label htmlFor = "defects">
           Defects:
         </label>
