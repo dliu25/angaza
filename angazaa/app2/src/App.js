@@ -12,10 +12,18 @@ function Tutorial() {
     </p>
   );
 }
+function Table(){
+  return (
+    <div>
+      <Navbar />
+      
+    </div>
+  )
+}
 function Form(){
   let navigate = useNavigate();
   const changePage = () =>{
-    var path =  "/../item/"  // + number of rows in database*/;
+    var path =  "/../item/"  // + number of rows in database aka index of new row*/;
     navigate(path);
   }
   const formik = useFormik({
@@ -98,7 +106,10 @@ function Navbar() {
       <h1 className="site-title">Angaza Technology Literacy Center</h1>
       <ul>
         <li>
-          <Link to="/">Inventory Viewer</Link>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/inven-view">Inventory Viewer</Link>
         </li>
         <li>
           <Link to="/inven-input">Inventory Input</Link>
@@ -127,7 +138,6 @@ function ItemDetails() {
     <div>
       <h2>Item Details</h2>
       <p>Serial Code: </p>
-      <p>Operating System: </p>
       <p>Device Metadata: </p>
       <p>Defects: </p>
       <p>Place of Origin: </p>
@@ -144,6 +154,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/item/:id" element={<ItemDetails />} />
         <Route path="/inven-input" element={<Form />} />
+        <Route path="/inven-view" element={<Table />} />
       </Routes>
     </div>
   );
