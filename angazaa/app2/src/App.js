@@ -23,7 +23,7 @@ function Form(){
     },
     onSubmit:(values) => {
       //submit somehow
-      ReactDOM.render(<QRCode value="hey" />, document.getElementById("Container"));
+      
       console.log(values);
     }
   });
@@ -108,6 +108,8 @@ function ItemDetails() {
       <p>Defects: </p>
       <p>Place of Origin: </p>
       <p>Download CSV</p>
+      <p>Share</p>
+      <QRCode value="http://localhost:3000/item/{id}" />
     </div>
   );
 }
