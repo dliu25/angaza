@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import { Routes, Route, useParams, Link, Navigate } from "react-router-dom";
-import "./mvp.css";
-import axios from "axios";
+//import { useState } from "react";
+import { Routes, Route, useParams, Link,  } from "react-router-dom";
+import { useFormik } from "formik";
+//import axios from "axios";
 
 function Tutorial() {
   return (
@@ -14,7 +14,58 @@ function Tutorial() {
     </p>
   );
 }
-
+function Form(){
+  const formik = useFormik({
+    initialValues: {
+      serial: "",
+      defects: "",
+      origin: "",
+    },
+    onSubmit:(values) => {
+      console.log(values);
+    }
+  });
+  return (
+    <div>
+      <Navbar />
+      <form onSubmit={formik.handleSubmit}>
+        <h1>Inventory Input Form</h1>
+        <label htmlFor = "serial">
+          Serial code:
+        </label>
+        <input
+            type="text"
+            name="serial"
+            value = {formik.values.serial}
+            onChange={formik.handleChange}
+        />
+        <details>
+          <summary>How to find serial code?</summary>
+          <Tutorial />
+        </details>
+        <label htmlFor = "defects">
+          Defects:
+        </label>
+        <input
+            type="text"
+            name="defects"
+            value = {formik.values.defects}
+            onChange={formik.handleChange}
+        />
+        <label htmlFor = "origin">
+          Origin:
+        </label>
+        <input
+            type="text"
+            name="origin"
+            value = {formik.values.origin}
+            onChange={formik.handleChange}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  );
+}
 function Navbar() {
   return (
     <nav className="nav">
@@ -37,69 +88,9 @@ function Home() {
       <Navbar />
       <h2>Welcome to the Angaza Technology Literacy Center</h2>
       <p>
-        This is a platform for managing inventory and facilitating technology
-        literacy initiatives in Africa.
+        This is a platform for tracking inventory and details of devices sent to partners in Africa.
       </p>
     </>
-  );
-}
-
-function Form() {
-  const [serial, setSerial] = useState("");
-  const [defects, setDefects] = useState("");
-  const [origin, setOrigin] = useState("");
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await axios.post("/submit-form", {
-        serial: serial,
-        defects: defects,
-        origin: origin,
-        os: "Windows 10", // This is just a placeholder, you can adjust as needed
-        device_name: "Placeholder Device" // This is just a placeholder, you can adjust as needed
-      });
-      // Redirect or show success message after successful submission
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      // Handle error, show error message, etc.
-    }
-  };
-
-  return (
-    <div>
-      <Navbar />
-      <form onSubmit={handleSubmit}>
-        <h2>Inventory Input Form</h2>
-        <label>
-          Serial code:
-          <input
-            type="text"
-            name="serial"
-            onChange={(e) => setSerial(e.target.value)}
-          />
-          <details>
-            <summary>How to find serial code?</summary>
-            <Tutorial />
-          </details>
-        </label>
-        <label>
-          Defects:
-          <textarea
-            value={defects}
-            onChange={(e) => setDefects(e.target.value)}
-          />
-        </label>
-        <label>
-          Place of Origin:
-          <textarea
-            value={origin}
-            onChange={(e) => setOrigin(e.target.value)}
-          />
-        </label>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
   );
 }
 
@@ -108,7 +99,7 @@ function ItemDetails() {
   return (
     <div>
       <h2>Item Details</h2>
-      <p>Serial Code: {id}</p>
+      <p>Serial Code: </p>
       <p>Operating System: </p>
       <p>Device Metadata: </p>
       <p>Defects: </p>
@@ -116,7 +107,6 @@ function ItemDetails() {
     </div>
   );
 }
-
 function App() {
   return (
     <div className="App">
@@ -128,5 +118,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
