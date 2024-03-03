@@ -83,7 +83,7 @@ function Form(){
       ven: "",
     },
     onSubmit:(values) => {
-      //upload data somehow
+      //upload data somehow 
 
       changePage();
       //console.log(values);
@@ -111,64 +111,66 @@ function Form(){
       <Navbar />
       <form onSubmit={formik.handleSubmit}>
         <h1>Inventory Input Form</h1>
+        <div class = "details">
         <details>
             <summary>How to find serial code?</summary>
             <Tutorial /> 
         </details>
+        </div>
         <label className = "sv" htmlFor = "sv">
           Service Label:
-        </label>
-        <input
+          <input
             type="text"
             name="sv"
             value = {formik.values.sv}
             onChange={formik.handleChange}
             onInput={checkBrand(formik.values.sv)}
         />
-        <label 
+        </label>
+        <label className = "brand"
         value = {formik.values.br} 
         onChange={formik.handleChange}>
           Brand: {brand}
           </label>
         <label className = "star" htmlFor = "star">
           Start:
-        </label>
-        <input
+          <input
             type="text"
             name="star"
             value = {formik.values.star}
             onChange={formik.handleChange}
         />
+        </label>
         <label className = "en" htmlFor = "en">
           End:
-        </label>
-        <input
+          <input
             type="text"
             name="en"
             value = {formik.values.en}
             onChange={formik.handleChange}
         />
+        </label>
         <label className = "con" htmlFor = "con">
           Condition:
-        </label>
-        <input
+          <input
             type="text"
             name="con"
             value = {formik.values.con}
             onChange={formik.handleChange}
         />
+        </label>
         <label className = "ven" htmlFor = "ven">
           Vendor:
-        </label>
-        <input
+          <input
             type="text"
             name="nen"
             value = {formik.values.nen}
             onChange={formik.handleChange}
         />
-        <button type="submit">Submit</button>
-
-
+        </label>
+        <div className = "submit">
+          <button type="submit">Submit</button>
+        </div>
       </form>
     </div>
   );

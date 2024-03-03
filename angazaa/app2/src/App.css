@@ -66,6 +66,7 @@ body {
 .sv {
   text-align: center;
   font-size: 30px;
+  padding-left: 25%;
 }
 
 .inview,
@@ -104,16 +105,20 @@ body {
 .star,
 .en,
 .con,
-.ven {
-  text-align: center;
+.ven,
+.brand{
+  display:flex;
+  justify-content: row;
   margin: 10px;
   margin-left: 125px;
-  padding-top: 5%/* Adjust margin as needed */
+  padding-top: 5%; /* Adjust margin as needed */
+  padding-left: 25%;
 }
 .star label,
 .en label,
 .con label,
-.ven label { /* Ensure labels are displayed correctly */
+.ven label,
+.brand label { /* Ensure labels are displayed correctly */
   margin-bottom: 5px;
   padding-top: 16%;/* Add space between label and input */
 }
