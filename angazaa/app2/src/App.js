@@ -5,8 +5,7 @@ var domain = "https://localhost:3000/";
 function Tutorial() {
   return (
     <p>
-      If the device is operating on Windows, go to Settings &gt; System &gt;
-      About. If the device is operating on MacOS, go to the Apple menu &gt;
+      If the device is operating on Windows, open cmd and type in <b>wmic bios get serialnumber</b>. If the device is operating on MacOS, go to the Apple menu &gt;
       About This Mac. If the device is operating on ChromeOS, press ALT + V on
       the Sign-In screen. If the device is operating on LinuxOS, execute the
       dmidecode command in the terminal.
