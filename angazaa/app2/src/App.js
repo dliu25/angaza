@@ -109,7 +109,7 @@ function ItemDetails() {
       <p>Place of Origin: </p>
       <p>Download CSV</p>
       <p>Share</p>
-      <QRCode value="http://localhost:3000/item/{id}" />
+      <QRCode value={"http://localhost:3000/item/" + id} />
     </div>
   );
 }
