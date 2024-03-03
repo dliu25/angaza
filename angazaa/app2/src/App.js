@@ -1,6 +1,7 @@
 import { Routes, Route, useParams, Link, useNavigate  } from "react-router-dom";
 import { useFormik } from "formik";
 import QRCode from "react-qr-code";
+import DataTable from "react-data-table-component";
 var domain = "https://localhost:3000/";
 function Tutorial() {
   return (
@@ -12,10 +13,53 @@ function Tutorial() {
   );
 }
 function Table(){
+  const columns = [
+    {
+      name :"Serial Code",
+      selector: row => row.serial // placeholders, database man replace
+    },
+    {
+      name:"Brand",
+      selector: row => row.brand, // placeholders, database man replace
+      sortable: true
+    },
+    {
+      name :"Defects",
+      selector: row => row.defects // placeholders, database man replace
+    },
+    {
+      name : "Place of Origin",
+      selector: row => row.origin // placeholders, database man replace
+    },
+  ];
+  const data = [
+    //import database somehow temp data
+    {
+      serial: "I23832",
+      brand: "Nintendo",
+      defects: "Everything is broken",
+      origin: "Europe"
+    },
+    {
+      serial: "DA-329342",
+      brand: "HP",
+      defects: "Everything is broken",
+      origin: "Lithunia"
+    },
+    {
+      serial: "PDSA-SADD-SDAS",
+      brand: "Panasonic",
+      defects: "Literal E-waste",
+      origin: "Spain"
+    }
+  ]
+  
   return (
     <div>
       <Navbar />
+      <DataTable columns={columns} data = {data} fixedHeader pagination>
 
+      </DataTable>
     </div>
   )
 }
@@ -143,7 +187,7 @@ function ItemDetails() {
     <div>
       <h2>Item Details</h2>
       <p>Serial Code: </p>
-      <p>Device Metadata: </p>
+      <p>Brand: </p>
       <p>Defects: </p>
       <p>Place of Origin: </p>
       <p>Download CSV</p>
