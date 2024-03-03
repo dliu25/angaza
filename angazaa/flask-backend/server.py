@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from flask_mysql_connector import MySQL
+import MySQLdb
 
 app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'localhost'
@@ -7,7 +7,12 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'sys'
 
-mysql = MySQL(app)
+mysql = MySQLdb.connect(
+    host=app.config['MYSQL_HOST'],
+    user=app.config['MYSQL_USER'],
+    password=app.config['MYSQL_PASSWORD'],
+    db=app.config['MYSQL_DB']
+)
 
 CREATE_TABLE_QUERY = """
 CREATE TABLE IF NOT EXISTS devices (
@@ -29,16 +34,13 @@ def submit_form():
     os = data.get('os')
     device_name = data.get('device_name')
 
-    try:
-        cur = mysql.connection.cursor()
-        cur.execute(CREATE_TABLE_QUERY)
-        cur.execute("INSERT INTO devices (serial, defects, origin, os, device_name) VALUES (%s, %s, %s, %s, %s)", (serial, defects, origin, os, device_name))
-        mysql.connection.commit()
-        cur.close()
+    cur = mysql.cursor()
+    cur.execute(CREATE_TABLE_QUERY)
+    cur.execute("INSERT INTO devices (serial, defects, origin, os, device_name) VALUES (%s, %s, %s, %s, %s)", (serial, defects, origin, os, device_name))
+    mysql.commit()
+    cur.close()
 
-        return jsonify(message='Device added successfully'), 201
-    except Exception as e:
-        return jsonify(error=str(e)), 500
+    return jsonify(message='Device added successfully'), 201
 
 if __name__ == "__main__":
     app.run(debug=True)
