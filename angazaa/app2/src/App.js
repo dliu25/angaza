@@ -1,7 +1,5 @@
-//import { useState } from "react";
 import { Routes, Route, useParams, Link,  } from "react-router-dom";
 import { useFormik } from "formik";
-//import axios from "axios";
 
 function Tutorial() {
   return (
@@ -22,6 +20,7 @@ function Form(){
       origin: "",
     },
     onSubmit:(values) => {
+      //submit somehow
       console.log(values);
     }
   });
@@ -95,6 +94,7 @@ function Home() {
 }
 
 function ItemDetails() {
+  //get data from row of id and add to html
   const { id } = useParams();
   return (
     <div>
@@ -104,6 +104,7 @@ function ItemDetails() {
       <p>Device Metadata: </p>
       <p>Defects: </p>
       <p>Place of Origin: </p>
+      <p>Download CSV</p>
     </div>
   );
 }
