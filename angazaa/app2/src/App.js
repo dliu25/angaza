@@ -56,7 +56,6 @@ function Table(){
   
   return (
     <div>
-      <Navbar />
       <DataTable columns={columns} data = {data} fixedHeader pagination>
 
       </DataTable>
@@ -146,6 +145,8 @@ function Form(){
 
 
       </form>
+      <Table />
+
     </div>
   );
 }
@@ -159,9 +160,6 @@ function Navbar() {
         </li>
         <li>
           <Link to="/inven-view">Inventory Viewer</Link>
-        </li>
-        <li>
-          <Link to="/inven-input">Inventory Input</Link>
         </li>
       </ul>
     </nav>
@@ -204,8 +202,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/item/:id" element={<ItemDetails />} />
-        <Route path="/inven-input" element={<Form />} />
-        <Route path="/inven-view" element={<Table />} />
+        <Route path="/inven-view" element={<Form />} />
       </Routes>
     </div>
   );
