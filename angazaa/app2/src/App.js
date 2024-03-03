@@ -2,6 +2,8 @@ import { Routes, Route, useParams, Link, useNavigate  } from "react-router-dom";
 import { useFormik } from "formik";
 import QRCode from "react-qr-code";
 import DataTable from "react-data-table-component";
+import './App.css';
+
 var domain = "https://localhost:3000/";
 function Tutorial() {
   return (
@@ -12,24 +14,32 @@ function Tutorial() {
     </p>
   );
 }
+
 function Table(){
   const columns = [
     {
-      name :"Serial Code",
-      selector: row => row.serial // placeholders, database man replace
+      name :"Service Label",
+      selector: row => row.sv // placeholders, database man replace
     },
     {
-      name:"Brand",
-      selector: row => row.brand, // placeholders, database man replace
-      sortable: true
+      name :"Brand",
+      selector: row => row.br // placeholders, database man replace
     },
     {
-      name :"Defects",
-      selector: row => row.defects // placeholders, database man replace
+      name :"Start",
+      selector: row => row.srae // placeholders, database man replace
     },
     {
-      name : "Place of Origin",
-      selector: row => row.origin // placeholders, database man replace
+      name :"End",
+      selector: row => row.en // placeholders, database man replace
+    },
+    {
+      name :"Conditon",
+      selector: row => row.con // placeholders, database man replace
+    },
+    {
+      name :"Vendor",
+      selector: row => row.ven // placeholders, database man replace
     },
     {
       name : "QR",
@@ -39,25 +49,13 @@ function Table(){
   const data = [
     //import database somehow temp data
     {
-      serial: "I23832",
-      brand: "Nintendo",
-      defects: "Everything is broken",
-      origin: "Europe",
+      sv: "I23832",
+      br: "Nintendo",
+      start: "",
+      en: "",
+      con: "Everything is broken",
+      ven: "Me",
       qr: (<Link to="/../item/1">A</Link>)
-    },
-    {
-      serial: "DA-329342",
-      brand: "HP",
-      defects: "Everything is broken",
-      origin: "Lithunia",
-      qr: (<Link to="/../item/2">A</Link>)
-    },
-    {
-      serial: "PDSA-SADD-SDAS",
-      brand: "Panasonic",
-      defects: "Literal E-waste",
-      origin: "Spain",
-      qr: (<Link to="/../item/3">A</Link>)
     }
   ]
   
@@ -65,7 +63,6 @@ function Table(){
     <div>
       <Navbar />
       <DataTable columns={columns} data = {data} fixedHeader pagination>
-
       </DataTable>
     </div>
   )
@@ -78,10 +75,12 @@ function Form(){
   }
   const formik = useFormik({
     initialValues: {
-      serial: "",
-      brand: "",
-      defects: "",
-      origin: "",
+      sv: "",
+      br: "",
+      star: "",
+      en: "",
+      con: "",
+      ven: "",
     },
     onSubmit:(values) => {
       //upload data somehow
@@ -112,43 +111,61 @@ function Form(){
       <Navbar />
       <form onSubmit={formik.handleSubmit}>
         <h1>Inventory Input Form</h1>
-        <label htmlFor = "serial">
-          Identification code:
-        </label>
-        <input
-            type="text"
-            name="serial"
-            value = {formik.values.serial}
-            onChange={formik.handleChange}
-            onInput={checkBrand(formik.values.serial)}
-        />
         <details>
-          <summary>How to find serial code?</summary>
-          <Tutorial />
+            <summary>How to find serial code?</summary>
+            <Tutorial /> 
         </details>
-        <label>Brand: {brand}</label>
-        <label htmlFor = "defects">
-          Defects:
+        <label className = "sv" htmlFor = "sv">
+          Service Label:
         </label>
         <input
             type="text"
-            name="defects"
-            value = {formik.values.defects}
+            name="sv"
+            value = {formik.values.sv}
             onChange={formik.handleChange}
+            onInput={checkBrand(formik.values.sv)}
         />
-
-
-        <label htmlFor = "origin">
-          Origin:
+        <label 
+        value = {formik.values.br} 
+        onChange={formik.handleChange}>
+          Brand: {brand}
+          </label>
+        <label className = "star" htmlFor = "star">
+          Start:
         </label>
         <input
             type="text"
-            name="origin"
-            value = {formik.values.origin}
+            name="star"
+            value = {formik.values.star}
             onChange={formik.handleChange}
         />
-
-
+        <label className = "en" htmlFor = "en">
+          End:
+        </label>
+        <input
+            type="text"
+            name="en"
+            value = {formik.values.en}
+            onChange={formik.handleChange}
+        />
+        <label className = "con" htmlFor = "con">
+          Condition:
+        </label>
+        <input
+            type="text"
+            name="con"
+            value = {formik.values.con}
+            onChange={formik.handleChange}
+        />
+        <label className = "ven" htmlFor = "ven">
+          Vendor:
+        </label>
+        <input
+            type="text"
+            name="nen"
+            value = {formik.values.nen}
+            onChange={formik.handleChange}
+        />
         <button type="submit">Submit</button>
 
 
@@ -157,54 +174,99 @@ function Form(){
   );
 }
 function Navbar() {
+  let navigate = useNavigate();
+  const changePageA = () =>{
+    navigate("/inven-input");
+  }
+  const changePageB = () =>{
+    navigate("/inven-view");
+  }
+  const changePageC = () =>{
+    navigate("/..");
+  }
   return (
-    <nav className="nav">
-      <h1 className="site-title">Angaza Technology Literacy Center</h1>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/inven-view">Inventory Viewer</Link>
-        </li>
-        <li>
-          <Link to="/inven-input">Inventory Input</Link>
-        </li>
-      </ul>
+    <nav className="nav-bare">
+        <img
+            className = "logo"
+            src="https://cdn.glitch.global/89e6cfdf-775c-47cf-a856-87ee59789939/ballsss.png?v=1709439463539"
+            style={{width: 175, height: 175}}
+            alt="Logo"
+            onClick={changePageC}
+        />
+      <button className = "inview" onClick={changePageB}>View Inventory</button>
+      <button className = "input" onClick={changePageA}>Add device</button>
     </nav>
   );
 }
 
 function Home() {
+  let navigate = useNavigate();
+  const changePageA = () =>{
+    navigate("/inven-input");
+  }
+  const changePageB = () =>{
+    navigate("/inven-view");
+  }
   return (
-    <>
-      <Navbar />
-      <h2>Welcome to the Angaza Technology Literacy Center</h2>
-      <p>
-        This is a platform for tracking inventory and details of devices sent to partners in Africa.
-      </p>
-    </>
+      <body>
+        <div className = "nav-bar">
+        <img src="https://cdn.glitch.global/69973fd0-2612-442a-86f4-4900da5d229f/IMG_0522.jpeg?v=1709446089891"  alt="W" width="500" height="150"/>
+        </div>
+        <div class="buttons">
+          <button onClick={changePageA}>Add device</button>
+          <button onClick={changePageB}>View Inventory</button>
+        </div>
+      </body>
   );
 }
 
 function ItemDetails() {
-  //get data from row of id and add to html
+  //https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+  function arrayToCsv(data){
+    return data.map(row =>
+      row
+      .map(String)
+      .map(v => v.replaceAll('"', '""'))
+      .map(v => `"${v}"`)
+      .join(',')
+    ).join('\r\n');
+  }
+  //placeholder values
+  let csv = arrayToCsv([
+    [1, '2', '"3"'],
+  ]);
+  
+  /** Download contents as a file
+ * Source: https://stackoverflow.com/questions/14964035/how-to-export-javascript-array-info-to-csv-on-client-side
+ */
+  function downloadBlob(content, filename, contentType) {
+    // Create a blob
+    var blob = new Blob([content], { type: contentType });
+    var url = URL.createObjectURL(blob);
+  
+    // Create a link to download it
+    var pom = document.createElement('a');
+    pom.href = url;
+    pom.setAttribute('download', filename);
+    pom.click();
+  }
   const { id } = useParams();
   return (
     <div>
-      <h2>Item Details</h2>
-      <p>Serial Code: </p>
-      <p>Brand: </p>
-      <p>Defects: </p>
-      <p>Place of Origin: </p>
-      <p>Download CSV</p>
-
-      
+      <h2>Item Details:{}</h2>
+      <p>Service Label:{}</p>
+      <p>Brand:{}</p>
+      <p>Start:{}</p>
+      <p>End:{}</p>
+      <p>Condition:{}</p>
+      <p>Vendor:{}</p>
+      <button onClick={() => downloadBlob(csv)}>Download CSV</button>
       <p>Share</p>
       <QRCode value={domain + "item/" + id} />
     </div>
   );
 }
+
 function App() {
   return (
     <div className="App">
