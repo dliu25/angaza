@@ -22,7 +22,7 @@ function Table(){
 function Form(){
   let navigate = useNavigate();
   const changePage = () =>{
-    var path =  "/../item/"  +4// + number of rows in database aka index of new row*/;
+    var path =  "/../item/"  + 4// change 4 to number of rows in database aka index of new row*/;
     navigate(path);
   }
   const formik = useFormik({
@@ -85,6 +85,8 @@ function Form(){
             value = {formik.values.defects}
             onChange={formik.handleChange}
         />
+
+
         <label htmlFor = "origin">
           Origin:
         </label>
@@ -94,7 +96,11 @@ function Form(){
             value = {formik.values.origin}
             onChange={formik.handleChange}
         />
+
+
         <button type="submit">Submit</button>
+
+
       </form>
     </div>
   );
@@ -141,6 +147,8 @@ function ItemDetails() {
       <p>Defects: </p>
       <p>Place of Origin: </p>
       <p>Download CSV</p>
+
+      
       <p>Share</p>
       <QRCode value={domain + "item/" + id} />
     </div>
