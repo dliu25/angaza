@@ -7,8 +7,7 @@ function Tutorial() {
     <p>
       If the device is operating on Windows, open cmd and type in <b>wmic bios get serialnumber</b>. If the device is operating on MacOS, go to the Apple menu &gt;
       About This Mac. If the device is operating on ChromeOS, press ALT + V on
-      the Sign-In screen. If the device is operating on LinuxOS, execute the
-      dmidecode command in the terminal.
+      the Sign-In screen.
     </p>
   );
 }
@@ -16,14 +15,14 @@ function Table(){
   return (
     <div>
       <Navbar />
-      
+
     </div>
   )
 }
 function Form(){
   let navigate = useNavigate();
   const changePage = () =>{
-    var path =  "/../item/"  // + number of rows in database aka index of new row*/;
+    var path =  "/../item/"  +4// + number of rows in database aka index of new row*/;
     navigate(path);
   }
   const formik = useFormik({
@@ -63,7 +62,7 @@ function Form(){
       <form onSubmit={formik.handleSubmit}>
         <h1>Inventory Input Form</h1>
         <label htmlFor = "serial">
-          Serial code:
+          Identification code:
         </label>
         <input
             type="text"
