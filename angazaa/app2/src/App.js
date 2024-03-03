@@ -37,13 +37,13 @@ function Form(){
     let AppleRegex = /^A+[0-9]{4}$/;
     let MicrosoftRegex = /^([A-Za-z0-9]{5}-){4}[A-Za-z0-9]{5}$/;
     let AsusRegex = /^[A-Za-z0-9]{12}$/;
-    let LenovoRegex = /^[A-Za-z0-9]{7}$/;
+    let DellRegex = /^[A-Za-z0-9]{7}$/;
     if (AppleRegex.test(id))
       brand = "Apple";
     else if (MicrosoftRegex.test(id)) 
       brand =  "Microsoft";
-    else if (LenovoRegex.test(id))
-      brand = "Lenovo";
+    else if (DellRegex.test(id))
+      brand = "Dell";
     else if (AsusRegex.test(id))
       brand = "Asus";
     else
