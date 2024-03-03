@@ -1,8 +1,7 @@
-import { Routes, Route, useParams, Link,  } from "react-router-dom";
+import { Routes, Route, useParams, Link, useNavigate  } from "react-router-dom";
 import { useFormik } from "formik";
-import ReactDOM from "react-dom";
 import QRCode from "react-qr-code";
-
+var domain = "https://localhost:3000/";
 function Tutorial() {
   return (
     <p>
@@ -15,6 +14,11 @@ function Tutorial() {
   );
 }
 function Form(){
+  let navigate = useNavigate();
+  const changePage = () =>{
+    var path =  "/../item/"  // + number of rows in database*/;
+    navigate(path);
+  }
   const formik = useFormik({
     initialValues: {
       serial: "",
@@ -23,8 +27,8 @@ function Form(){
     },
     onSubmit:(values) => {
       //submit somehow
-      
-      console.log(values);
+      changePage();
+      //console.log(values);
     }
   });
   return (
@@ -109,7 +113,7 @@ function ItemDetails() {
       <p>Place of Origin: </p>
       <p>Download CSV</p>
       <p>Share</p>
-      <QRCode value={"http://localhost:3000/item/" + id} />
+      <QRCode value={domain + "item/" + id} />
     </div>
   );
 }
