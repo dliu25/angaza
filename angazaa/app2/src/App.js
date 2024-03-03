@@ -31,6 +31,10 @@ function Table(){
       name : "Place of Origin",
       selector: row => row.origin // placeholders, database man replace
     },
+    {
+      name : "QR",
+      selector: row => row.qr // placeholders, database man replace
+    },
   ];
   const data = [
     //import database somehow temp data
@@ -38,19 +42,22 @@ function Table(){
       serial: "I23832",
       brand: "Nintendo",
       defects: "Everything is broken",
-      origin: "Europe"
+      origin: "Europe",
+      qr: (<Link to="/../item/1">A</Link>)
     },
     {
       serial: "DA-329342",
       brand: "HP",
       defects: "Everything is broken",
-      origin: "Lithunia"
+      origin: "Lithunia",
+      qr: (<Link to="/../item/2">A</Link>)
     },
     {
       serial: "PDSA-SADD-SDAS",
       brand: "Panasonic",
       defects: "Literal E-waste",
-      origin: "Spain"
+      origin: "Spain",
+      qr: (<Link to="/../item/3">A</Link>)
     }
   ]
   
