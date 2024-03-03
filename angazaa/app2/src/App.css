@@ -1,0 +1,126 @@
+*,
+::before,
+::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+@keyframes float{
+  from{
+    transform:scale(1);
+  }
+  to{
+   transform: scale(3);
+  }
+}
+.profile img {
+  height: 125px;
+  border-radius: 50%;
+  outline: 2px solid red;
+  z-index: 1;
+  position: relative;
+}
+.pic::after{
+content: "";
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  background: red;
+  top: 70px;
+  left: 70px;
+  opacity: 30%;
+  position: absolute;
+  animation-name: float;
+  animation-timing-function: ease-out;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  
+}
+/*DO NOT EDIT BELOW THIS LINE*/
+
+.library {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.library img {
+  height: 100px;
+  border-radius: 10px;
+  box-shadow: -1px -1px 15px 0px rgba(0, 0, 0, 0.4);
+}
+
+#apex {
+  width: 100px;
+}
+
+.recent {
+  background: #222222;
+  padding: 2rem;
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.game h2 {
+  font-size: 1.125rem;
+  font-weight: 500;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vh;
+  color: #fefefe;
+  background-image: url(https://cdn.glitch.global/6876a038-cef4-4aa3-a98f-2a9f674386a5/76e4541988452f0e9a46d8264445efc4.jpg?v=1709427407151);
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.container {
+  min-width: 400px;
+  width: 60%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background: #111111;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: -1px -1px 15px 0px rgba(255, 255, 255, 0.4);
+}
+
+.profile {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  position: relative;
+  align-items: center;
+}
+
+.tag {
+  font-weight: 300;
+  opacity: 0.7;
+}
+
+.live {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+  font-weight: 700;
+  opacity: 0.75;
+  color: red;
+}
+
+.live::before {
+  content: "";
+  height: 0.8rem;
+  width: 0.8rem;
+  border-radius: 50%;
+  background: red;
+  display: inline-block;
+  transform: translateX(-3px);
+}
