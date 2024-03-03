@@ -1,5 +1,7 @@
 import { Routes, Route, useParams, Link,  } from "react-router-dom";
 import { useFormik } from "formik";
+import ReactDOM from "react-dom";
+import QRCode from "react-qr-code";
 
 function Tutorial() {
   return (
@@ -21,6 +23,7 @@ function Form(){
     },
     onSubmit:(values) => {
       //submit somehow
+      ReactDOM.render(<QRCode value="hey" />, document.getElementById("Container"));
       console.log(values);
     }
   });
